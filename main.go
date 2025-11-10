@@ -244,11 +244,7 @@ func getDataFromURL(uri string) string {
 	log.Println("Scraping", uri) // Log which URL is being scraped
 
 	// Create custom client to skip SSL verification (unsafe in prod)
-	client := &http.Client{
-		Transport: &http.Transport{
-			TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // Disable TLS verification
-		},
-	}
+	client := http.DefaultClient
 
 	// Send GET request
 	response, err := client.Get(uri)
